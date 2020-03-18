@@ -1,7 +1,7 @@
 package dao;
 
 import com.mysql.jdbc.Statement;
-
+//ceshi
 public class UpdataUserInfoDao {
 	private Connect connect=new Connect();
 	private Statement statement=null;
