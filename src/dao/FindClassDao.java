@@ -27,6 +27,8 @@ public class FindClassDao {
 			tablename="junior_grade_2";
 		}else if(gradestring.equals("初三")) {
 			tablename="junior_grade_3";
+		}else if(gradestring.equals("初四")) {
+			tablename="junior_grade_4";
 		}else if(gradestring.equals("一年级")) {
 			tablename="primary_grade_1";
 		}else if(gradestring.equals("二年纪")) {
