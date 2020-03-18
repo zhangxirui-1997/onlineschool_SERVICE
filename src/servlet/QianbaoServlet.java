@@ -1,0 +1,80 @@
+package servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.mysql.fabric.xmlrpc.base.Value;
+
+import dao.FindClassDetailDao;
+import dao.LoginDao;
+import dao.QianbaoDao;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+/**
+ * Servlet implementation class QianbaoServlet
+ */
+@WebServlet("/QianbaoServlet")
+public class QianbaoServlet extends HttpServlet {
+	protected void service(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("UTF-8");
+		
+		String phonenumber=request.getParameter("phonenumber");  
+        String classnumber=request.getParameter("classnumber");
+        String ordertable=request.getParameter("ordertable");  
+        String pricenumber=request.getParameter("price");
+        String grade=request.getParameter("grade");
+     
+
+
+        System.out.println("订单信息"+phonenumber+" "+classnumber+" "+ordertable+" "+grade);
+        
+        response.setContentType("text/html;charset-UTF-8");
+        
+        PrintWriter outPrintWriter=response.getWriter();
+        
+        Double mynum=0d;
+        
+        try {
+			mynum=new QianbaoDao().mynumaction(phonenumber);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        
+        Double price=Double.parseDouble(pricenumber);
+        if(mynum<price) {//钱包的钱不够
+        	outPrintWriter.write("no");
+        }else {
+        	mynum=mynum-price;
+        	JSONArray jsonArray=null;
+        	try {
+				new QianbaoDao().updatanumber(phonenumber,mynum+"");
+				new QianbaoDao().insertOrder(classnumber, phonenumber, ordertable, pricenumber);
+				jsonArray=new FindClassDetailDao().FindClassDetailAction(grade,classnumber);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	outPrintWriter.write(jsonArray.toString());
+        }
+        
+        
+        
+		 
+		
+		outPrintWriter.close();
+	}
+
+}
