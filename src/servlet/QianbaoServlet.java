@@ -32,7 +32,10 @@ public class QianbaoServlet extends HttpServlet {
         String ordertable=request.getParameter("ordertable");  
         String pricenumber=request.getParameter("price");
         String grade=request.getParameter("grade");
-     
+        
+        String address_string=request.getParameter("address_string");
+        String phone_string=request.getParameter("phone_string");
+        String invitation_string=request.getParameter("invitation_string");
 
 
         System.out.println("∂©µ•–≈œ¢"+phonenumber+" "+classnumber+" "+ordertable+" "+grade);
@@ -58,7 +61,7 @@ public class QianbaoServlet extends HttpServlet {
         	JSONArray jsonArray=null;
         	try {
 				new QianbaoDao().updatanumber(phonenumber,mynum+"");
-				new QianbaoDao().insertOrder(classnumber, phonenumber, ordertable, pricenumber);
+				new QianbaoDao().insertOrder(classnumber, phonenumber, ordertable, pricenumber,address_string,phone_string,invitation_string);
 				jsonArray=new FindClassDetailDao().FindClassDetailAction(grade,classnumber);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

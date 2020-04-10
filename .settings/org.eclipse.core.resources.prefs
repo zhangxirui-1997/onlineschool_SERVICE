@@ -4,5 +4,7 @@ encoding//src/dao/LoginDao.java=UTF-8
 encoding//src/dao/RegisterDao.java=UTF-8
 encoding//src/servlet/FindClassDetailServlet.java=UTF-8
 encoding//src/servlet/FindClassServlet.java=UTF-8
+encoding//src/servlet/FindKeyServlet.java=UTF-8
+encoding//src/servlet/GetServlet.java=UTF-8
 encoding//src/servlet/LoginServlet.java=UTF-8
 encoding//src/servlet/RegisterServlet.java=UTF-8

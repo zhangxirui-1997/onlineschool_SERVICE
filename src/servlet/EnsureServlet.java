@@ -43,9 +43,11 @@ public class EnsureServlet extends HttpServlet {
         
         PrintWriter outPrintWriter=response.getWriter();
         
-        String i="no";
+        String i="";
         if(result) {
         	i="yes";
+        }else {
+        	i="no";
         }
         
 		outPrintWriter.println(i);

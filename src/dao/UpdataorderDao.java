@@ -13,8 +13,12 @@ public class UpdataorderDao {
 	private Statement statement=null;
 	private Connect connect2=new Connect();
 	private Statement statement2=null;
-	private String[] orders=new String[] {"u_order_high_1_1","u_order_junior_1_1","u_order_primary_1_1",};
-	private String[] classes=new String[] {"high_grade_1","junior_grade_1","primary_grade_1"};
+	private String[] orders=new String[] {"u_order_high_1_1","u_order_high_2_1","u_order_high_3_1",
+			"u_order_junior_1_1","u_order_junior_2_1","u_order_junior_3_1","u_order_junior_4_1",
+			"u_order_primary_1_1","u_order_primary_2_1","u_order_primary_3_1","u_order_primary_4_1","u_order_primary_5_1","u_order_primary_6_1"};
+	private String[] classes=new String[] {"high_grade_1","high_grade_2","high_grade_3",
+			"junior_grade_1","junior_grade_2","junior_grade_3","junior_grade_4",
+			"primary_grade_1","primary_grade_2","primary_grade_3","primary_grade_4","primary_grade_5","primary_grade_6"};
 	public JSONArray Updataorder(String numberstring) throws Exception {
 		statement=(Statement) connect.begin();
 		JSONArray jsonArray=new JSONArray();

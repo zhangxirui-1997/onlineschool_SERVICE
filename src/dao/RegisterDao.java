@@ -11,7 +11,7 @@ public class RegisterDao {
 	private Connect connect=new Connect();
 	private Statement statement=null;
 	
-	public int registerup(String phonenumberstring, String passWordstring) throws Exception {
+	public int registerup(String phonenumberstring, String passWordstring,String Invitation_code) throws Exception {
 		statement=(Statement) connect.begin();
 		String table="user_info_"+phonenumberstring.substring(phonenumberstring.length()-1);
 		int i;
@@ -29,7 +29,8 @@ public class RegisterDao {
         	String sqlString2="insert into "+table+" values ("+"\'"+phonenumberstring+"\'"+",\'"+"随机的用户名"+
         			"\',\'"+"随机的真实名"+"\'"+",\'"+passWordstring+
         			"\',\'"+"未知"+"\'"+",\'"+"未知"+
-        			"\',\'"+formatter.format(date)+"\'"+",\'"+"未知学校"+"\',\'0\')";
+        			"\',\'"+formatter.format(date)+"\'"+",\'"+"未知学校"+"\',\'0\',\'0\',\'"+Invitation_code+"\')";
+        	System.out.println(sqlString2);
         	statement.executeUpdate(sqlString2);
         	i=1;
         }
